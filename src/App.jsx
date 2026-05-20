@@ -1,6 +1,7 @@
 import "./App.css";
 import { useEffect, useState } from "react";
 import { generateRecipe } from "./services/gemini";
+import { Analytics } from "@vercel/analytics/react"
 
 function App() {
   const [apiKey, setApiKey] = useState("");
@@ -224,6 +225,7 @@ function App() {
         </a>
 
       </div>
+      <Analytics />
     </div>
     
   );
