@@ -2,6 +2,7 @@ import "./App.css";
 import { useEffect, useState } from "react";
 import { generateRecipe } from "./services/gemini";
 import { Analytics } from "@vercel/analytics/react"
+import { analyzeFoodImage } from "./services/gemini_image";
 
 function App() {
   const [apiKey, setApiKey] = useState("");
@@ -84,6 +85,68 @@ function App() {
 
     setLoading(false);
   };
+  const handleImageUpload = async (e) => {
+
+  const file = e.target.files[0];
+
+  if (!file) return;
+
+  if (!apiKey.trim()) {
+    alert("Enter Gemini API key");
+    return;
+  }
+
+  try {
+
+    setLoading(true);
+
+    const reader = new FileReader();
+
+    reader.onloadend = async () => {
+
+      try {
+
+        const base64 =
+          reader.result.split(",")[1];
+
+        const result = await analyzeFoodImage(
+          apiKey,
+          base64,
+          file.type
+        );
+
+        const clean = result
+          .replace(/```json/gi, "")
+          .replace(/```/g, "")
+          .trim();
+
+        const parsed = JSON.parse(clean);
+
+        setIngredients(
+          parsed.ingredients.join(", ")
+        );
+
+      } catch (err) {
+
+        setError(
+          "Could not analyze image."
+        );
+      }
+
+      setLoading(false);
+    };
+
+    reader.readAsDataURL(file);
+
+  } catch (err) {
+
+    setLoading(false);
+
+    setError(
+      "Image upload failed."
+    );
+  }
+};
 
   return (
     <div className="container">
@@ -116,6 +179,24 @@ function App() {
             value={ingredients}
             onChange={(e) => setIngredients(e.target.value)}
           />
+          <input
+            type="file"
+            accept="image/*"
+            capture="environment"
+            id="food-camera"
+            style={{ display: "none" }}
+            onChange={handleImageUpload}
+          />
+
+          <button
+            className="scan-btn"
+            onClick={() =>
+              document.getElementById("food-camera").click()
+            }
+          >
+            <img src="/camera.png" alt="" />
+            Scan ingredients
+          </button>
 
           <div className="time-buttons">
             <button

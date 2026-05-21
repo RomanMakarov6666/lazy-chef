@@ -198,6 +198,39 @@ button:disabled {
   text-decoration: underline;
 }
 
+.scan-btn {
+  margin-top: 16px;
+  width: 100%;
+  padding: 12px 14px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+
+  border: 1px solid #d1d5db;
+  border-radius: 12px;
+
+  background: #eceff1;
+  color: #1f2937;
+
+  font-size: 15px;
+  font-weight: 600;
+
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+
+.scan-btn:hover {
+  background: #e2e8ee;
+}
+
+.scan-btn img {
+  width: 40px;
+  height: 40px;
+  opacity: 0.85;
+}
+
 
 @media (max-width: 768px) {
 
@@ -257,5 +290,15 @@ button:disabled {
 
   .output h3 {
     font-size: 22px;
+  }
+  
+  .scan-btn {
+    padding: 15px;
+    font-size: 15px;
+  }
+  .scan-btn img {
+    width: 30px;
+    height: 30px;
+    opacity: 0.85;
   }
 }
