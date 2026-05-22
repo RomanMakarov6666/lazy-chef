@@ -306,7 +306,7 @@ function App() {
         </a>
 
       </div>
-      <Analytics />
+      <Analytics debug={false}/>
     </div>
     
   );
