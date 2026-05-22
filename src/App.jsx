@@ -11,6 +11,23 @@ function App() {
   const [loading, setLoading] = useState(false);
   const [cookTime, setCookTime] = useState("");
   const [error, setError] = useState("");
+  const [lang, setLang] = useState(localStorage.getItem("recipe_lang") || "en");
+
+  useEffect(() => {
+    localStorage.setItem("recipe_lang", lang);
+  }, [lang]);
+
+  const languages = [
+    { code: "en", name: "English" },
+    { code: "pl", name: "Polski" },
+    { code: "es", name: "Español" },
+    { code: "fr", name: "Français" },
+    { code: "de", name: "Deutsch" },
+    { code: "it", name: "Italiano" },
+    { code: "ja", name: "日本語" },
+    { code: "zh", name: "中文" },
+    { code: "ru", name: "Русский"}
+  ];
 
   useEffect(() => {
     const savedKey = localStorage.getItem("gemini_api");
@@ -46,7 +63,8 @@ function App() {
         ingredients,
         cookTime
           ? `Cooking time preference: ${cookTime}`
-          : ""
+          : "",
+          lang
       );
 
       // API errors
@@ -150,6 +168,32 @@ function App() {
 
   return (
     <div className="container">
+
+
+      <div className="lang-selector">
+
+        <div className="selected-lang">
+          {lang}
+        </div>
+
+        <div className="lang-options">
+
+          {languages
+            .filter((l) => l.code !== lang)
+            .map((l) => (
+              <div
+                key={l.code}
+                className="lang-option"
+                onClick={() => setLang(l.code)}
+              >
+                <span className="lang-code">
+                  {l.code}
+                </span>
+              </div>
+            ))}
+
+        </div>
+      </div>
 
       <h1 className="title">
         Lazy Chef

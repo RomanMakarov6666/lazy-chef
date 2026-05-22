@@ -1,7 +1,8 @@
 export async function generateRecipe(
   apiKey,
   ingredients,
-  cookTime
+  cookTime,
+  lang
 ) {
 
   try {
@@ -28,7 +29,7 @@ OUTPUT RULES:
 - no markdown
 - no explanations
 - no extra text outside json
-- use only english
+- use ONLY ${lang}
 
 COOKING RULES:
 - use the provided ingredients as the main and ONLY available ingredients

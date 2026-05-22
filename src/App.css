@@ -231,6 +231,61 @@ button:disabled {
   opacity: 0.85;
 }
 
+/* LANGUAGE SELECTOR */
+
+.lang-selector {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  z-index: 100;
+  color: rgb(58, 58, 58);
+  font-weight: 600;
+}
+
+.selected-lang {
+  text-transform: uppercase;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.lang-options {
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-5px);
+  transition: 0.2s;
+  margin-top: 8px;
+}
+
+.lang-selector:hover .lang-options {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.lang-option {
+  display: flex;
+  gap: 10px;
+  padding: 6px 0;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.lang-option:hover .lang-name {
+  opacity: 1;
+  width: auto;
+}
+
+.lang-code {
+  text-transform: uppercase;
+  min-width: 24px;
+}
+
+.lang-name {
+  opacity: 0;
+  width: 0;
+  overflow: hidden;
+  transition: 0.2s;
+}
 
 @media (max-width: 768px) {
 
