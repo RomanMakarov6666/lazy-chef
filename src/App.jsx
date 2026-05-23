@@ -169,6 +169,16 @@ function App() {
   return (
     <div className="container">
 
+      {!apiKey && (
+        <a
+          href="https://aistudio.google.com/apikey"
+          target="_blank"
+          rel="noreferrer"
+          className="api-link"
+        >
+          get api key
+        </a>
+      )}
 
       <div className="lang-selector">
 
