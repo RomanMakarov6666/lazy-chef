@@ -23,7 +23,6 @@ function App() {
     { code: "es", name: "Español" },
     { code: "fr", name: "Français" },
     { code: "de", name: "Deutsch" },
-    { code: "it", name: "Italiano" },
     { code: "ja", name: "日本語" },
     { code: "zh", name: "中文" },
     { code: "ru", name: "Русский"}
@@ -52,6 +51,9 @@ function App() {
       alert("Enter ingredients");
       return;
     }
+    const selectedLanguage = languages.find((l) => l.code === lang);
+
+    const langName = selectedLanguage?.name || "English";
 
     setLoading(true);
     setRecipe(null);
@@ -64,7 +66,7 @@ function App() {
         cookTime
           ? `Cooking time preference: ${cookTime}`
           : "",
-          lang
+          langName
       );
 
       // API errors

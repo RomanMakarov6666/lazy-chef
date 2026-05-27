@@ -1,6 +1,5 @@
 export const recipeSchema = `
-OUTPUT MUST BE VALID JSON ONLY:
-
+FORMAT:
 {
   "title": "string",
   "ingredients": ["string"],

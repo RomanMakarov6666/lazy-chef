@@ -1,10 +1,14 @@
 export const cookingRules = `
 COOKING RULES:
-- use provided ingredients as main base
-- minimal pantry ingredients allowed
-- prioritize realistic, edible meals
-- prefer simple dishes if ingredients conflict
-- ensure seasoning in savory dishes
-- optimize for taste and practicality
-- avoid overly fancy recipes
+RULES:
+- return ONLY valid JSON
+- no markdown
+- no extra text
+- use provided ingredients as the main ingredients
+- basic pantry ingredients are allowed
+- recipes must be realistic and edible
+- prefer simple meals if ingredients conflict
+- include seasoning for savory dishes
+- avoid fancy recipe names
+- total_time must equal all step times combined
 `;
